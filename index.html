@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Which M7 MBA Program Is Right for You?</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f4f0;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem 4rem;
+      color: #1a1a18;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      border: 0.5px solid #e0dfd8;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 620px;
+    }
+
+    .brand {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: #888780;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .progress-bar-bg {
+      height: 4px;
+      background: #e0dfd8;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .progress-bar-fill {
+      height: 4px;
+      background: #1a1a18;
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    .q-label {
+      font-size: 12px;
+      color: #888780;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .q-text {
+      font-size: 20px;
+      font-weight: 500;
+      color: #1a1a18;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 0.5px solid #c8c7c0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .opt:hover { background: #f5f4f0; }
+
+    .opt.selected {
+      border: 1.5px solid #1a1a18;
+      background: #f5f4f0;
+    }
+
+    .opt-letter {
+      font-size: 12px;
+      font-weight: 500;
+      color: #888780;
+      min-width: 18px;
+      margin-top: 2px;
+    }
+
+    .opt.selected .opt-letter { color: #1a1a18; }
+
+    .opt-text {
+      font-size: 15px;
+      color: #1a1a18;
+      line-height: 1.5;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+
+    .skip-note {
+      font-size: 12px;
+      color: #888780;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 22px;
+      border: 0.5px solid #c8c7c0;
+      border-radius: 8px;
+      background: transparent;
+      color: #1a1a18;
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    button:hover { background: #f5f4f0; }
+    button:disabled { opacity: 0.3; cursor: default; }
+
+    button.primary {
+      background: #1a1a18;
+      color: #fff;
+      border-color: #1a1a18;
+    }
+
+    button.primary:hover { opacity: 0.85; background: #1a1a18; }
+
+    /* Gate */
+    .gate-wrap {
+      border: 0.5px solid #e0dfd8;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      background: #fff;
+    }
+
+    .gate-icon { font-size: 28px; margin-bottom: 1rem; }
+
+    .gate-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: #1a1a18;
+      margin-bottom: 0.5rem;
+    }
+
+    .gate-sub {
+      font-size: 14px;
+      color: #888780;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .gate-field {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .gate-field input {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 15px;
+      font-family: inherit;
+      border: 0.5px solid #c8c7c0;
+      border-radius: 8px;
+      background: #fff;
+      color: #1a1a18;
+    }
+
+    .gate-field input:focus {
+      outline: none;
+      border-color: #1a1a18;
+    }
+
+    .gate-field input.error { border-color: #E24B4A; }
+
+    .error-msg {
+      font-size: 12px;
+      color: #E24B4A;
+      display: none;
+    }
+
+    .error-msg.visible { display: block; }
+
+    .gate-btn {
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      font-size: 15px;
+    }
+
+    .gate-privacy {
+      font-size: 11px;
+      color: #888780;
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+
+    .gate-skip {
+      font-size: 12px;
+      color: #888780;
+      text-align: center;
+      margin-top: 1rem;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .gate-skip:hover { color: #1a1a18; }
+
+    /* Result */
+    .result-card {
+      border: 0.5px solid #e0dfd8;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      background: #fff;
+    }
+
+    .school-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+    }
+
+    .school-name {
+      font-size: 24px;
+      font-weight: 500;
+      color: #1a1a18;
+      margin-bottom: 0.25rem;
+    }
+
+    .school-tagline {
+      font-size: 14px;
+      color: #888780;
+      margin-bottom: 1rem;
+    }
+
+    .school-desc {
+      font-size: 15px;
+      color: #1a1a18;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .traits-label {
+      font-size: 12px;
+      color: #888780;
+      margin-bottom: 0.5rem;
+    }
+
+    .trait-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .trait-tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 0.5px solid #c8c7c0;
+      color: #888780;
+    }
+
+    .runners-up { margin-top: 1.5rem; }
+
+    .runner-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 0.5px solid #e0dfd8;
+    }
+
+    .runner-row:last-child { border-bottom: none; }
+
+    .runner-name { font-size: 14px; color: #1a1a18; }
+
+    .runner-bar-wrap {
+      flex: 1;
+      margin: 0 12px;
+      height: 4px;
+      background: #e0dfd8;
+      border-radius: 2px;
+    }
+
+    .runner-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: #888780;
+    }
+
+    .runner-pct {
+      font-size: 13px;
+      color: #888780;
+      min-width: 32px;
+      text-align: right;
+    }
+
+    @media (max-width: 500px) {
+      .card { padding: 1.5rem 1rem; }
+      .q-text { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="brand">MBA fit quiz</div>
+  <div id="quiz-body"></div>
+</div>
+
+<script>
+const questions = [
+  { q: "How do you prefer to learn?", opts: [
+    { t: "Through lively, instructor-led debates in the classroom", schools: { HBS: 3, Kellogg: 1 } },
+    { t: "By diving deep into data, models, and frameworks on my own terms", schools: { Booth: 3, Sloan: 1 } },
+    { t: "Collaboratively — give me team projects and peer feedback all day", schools: { Kellogg: 3, Columbia: 1 } },
+    { t: "Through hands-on experimentation and entrepreneurial challenges", schools: { Stanford: 3, Sloan: 1 } },
+  ]},
+  { q: "What best describes your post-MBA ambition?", opts: [
+    { t: "Lead a major corporation or become a CEO someday", schools: { HBS: 3, Wharton: 1 } },
+    { t: "Found or co-found a startup that changes an industry", schools: { Stanford: 3, Columbia: 1 } },
+    { t: "Build a career in investment banking, private equity, or hedge funds", schools: { Wharton: 3, Columbia: 2 } },
+    { t: "Build and ship products at a tech company where the work actually changes things", schools: { Sloan: 3, Booth: 1 } },
+  ]},
+  { q: "Pick the working environment that energizes you most:", opts: [
+    { t: "High-stakes boardrooms where every decision has large consequences", schools: { HBS: 3, Wharton: 1 } },
+    { t: "Collaborative open offices where relationships and culture come first", schools: { Kellogg: 3, Stanford: 1 } },
+    { t: "Analytical settings where rigorous thinking drives outcomes", schools: { Booth: 3, Wharton: 1 } },
+    { t: "Fast-moving startup environments with lots of ambiguity", schools: { Stanford: 3, Columbia: 1 } },
+  ]},
+  { q: "Which quality do you value most in a leader?", opts: [
+    { t: "Visionary thinking — inspiring others toward a bold future", schools: { Stanford: 3, HBS: 1 } },
+    { t: "Analytical rigor — making the right call based on evidence", schools: { Booth: 3, Wharton: 1 } },
+    { t: "Emotional intelligence — bringing people together and building teams", schools: { Kellogg: 3, Sloan: 1 } },
+    { t: "Execution — getting things done and delivering results", schools: { HBS: 2, Columbia: 2 } },
+  ]},
+  { q: "Where do you see yourself living after graduating?", opts: [
+    { t: "New York City — finance, media, or a global company HQ", schools: { Columbia: 3, Wharton: 1 } },
+    { t: "Silicon Valley or another tech hub", schools: { Stanford: 3, Sloan: 2 } },
+    { t: "Boston or a research/innovation corridor", schools: { Sloan: 3, HBS: 2 } },
+    { t: "Chicago or other major cities — I want a consulting or consumer brand career", schools: { Kellogg: 3, Booth: 2 } },
+  ]},
+  { q: "How do you approach risk?", opts: [
+    { t: "I embrace risk — uncertainty is where the biggest opportunities hide", schools: { Stanford: 3, Columbia: 1 } },
+    { t: "I manage risk carefully with data and scenario planning", schools: { Booth: 3, Wharton: 1 } },
+    { t: "I take calculated risks, but relationship networks are my safety net", schools: { Kellogg: 3, HBS: 1 } },
+    { t: "I mitigate risk by focusing on proven models and execution", schools: { HBS: 2, Wharton: 2 } },
+  ]},
+  { q: "What kind of MBA classmates do you want to surround yourself with?", opts: [
+    { t: "Future founders and moonshot thinkers", schools: { Stanford: 3, Sloan: 1 } },
+    { t: "Future Wall Street leaders and global finance operators", schools: { Wharton: 3, Columbia: 2 } },
+    { t: "Team players who prioritize collaboration over competition", schools: { Kellogg: 3, Stanford: 1 } },
+    { t: "Intellectual powerhouses who debate ideas rigorously", schools: { Booth: 3, HBS: 1 } },
+  ]},
+  { q: "What is your relationship with numbers and quantitative analysis?", opts: [
+    { t: "I love it — the more rigorous the analysis, the better", schools: { Booth: 3, Wharton: 2 } },
+    { t: "I'm comfortable with data but lead with strategy and vision", schools: { HBS: 2, Stanford: 2 } },
+    { t: "I use numbers as one of many tools, alongside people skills", schools: { Kellogg: 2, Columbia: 2 } },
+    { t: "I'm drawn to tech-driven, systems-level thinking", schools: { Sloan: 3, Booth: 1 } },
+  ]},
+  { q: "Which industry excites you most right now?", opts: [
+    { t: "Technology, AI, or deep tech", schools: { Sloan: 3, Stanford: 2 } },
+    { t: "Finance, investment, or fintech", schools: { Wharton: 3, Columbia: 2 } },
+    { t: "Consumer brands, media, or marketing", schools: { Kellogg: 3, Columbia: 1 } },
+    { t: "Social impact, healthcare, or public policy", schools: { Stanford: 2, Kellogg: 1, HBS: 1 } },
+  ]},
+  { q: "How important is brand prestige to you?", opts: [
+    { t: "Critical — I want the most recognized name in every room", schools: { HBS: 3, Stanford: 3 } },
+    { t: "Important, but fit with my goals matters more", schools: { Wharton: 2, Booth: 2 } },
+    { t: "I value community and culture over name recognition", schools: { Kellogg: 3, Sloan: 1 } },
+    { t: "Prestige matters, but location and network are my priorities", schools: { Columbia: 3, Sloan: 1 } },
+  ]},
+  { q: "How important is the size and intimacy of your MBA cohort?", opts: [
+    { t: "Small and tight-knit — I want to know everyone in my class by name", schools: { Stanford: 3, Sloan: 2 } },
+    { t: "Mid-sized — enough diversity without feeling lost in the crowd", schools: { Booth: 2, Kellogg: 2 } },
+    { t: "Large — the bigger the network I graduate with, the better", schools: { Wharton: 3, HBS: 2 } },
+    { t: "I don't mind scale as long as the culture feels collaborative", schools: { Columbia: 2, Kellogg: 2 } },
+  ]},
+  { q: "How do you want your MBA to feel, day to day?", opts: [
+    { t: "Intense and case-driven — I want to be challenged daily", schools: { HBS: 3, Wharton: 1 } },
+    { t: "Intellectually stimulating with freedom to explore my own path", schools: { Booth: 2, Stanford: 2 } },
+    { t: "Warm and collaborative — close relationships with classmates and faculty", schools: { Kellogg: 3, Stanford: 1 } },
+    { t: "Fast-paced and plugged into a major city's business ecosystem", schools: { Columbia: 3, Wharton: 1 } },
+  ]},
+];
+
+const schoolInfo = {
+  HBS:      { name: "Harvard Business School", tagline: "The case method. General management. Global leadership.", lightBg: "#FAECE7", lightText: "#993C1D", desc: "You gravitate toward big leadership challenges, high-stakes decisions, and preparing to run organizations — not just functions. HBS's case method will stretch you with relentless real-world decision-making, and the alumni network is unmatched for general management careers.", traits: ["General management", "Case method", "CEO track", "Leadership-first", "Global brand"] },
+  Stanford: { name: "Stanford GSB", tagline: "Change lives. Change organizations. Change the world.", lightBg: "#EAF3DE", lightText: "#3B6D11", desc: "You're driven by a bigger 'why' — a belief that business can be a vehicle for meaningful change. GSB attracts mission-driven founders, visionary thinkers, and people who want to build something that didn't exist before. The small class size creates an intimate, high-trust environment.", traits: ["Entrepreneurship", "Social impact", "Mission-driven", "Small class", "Silicon Valley"] },
+  Wharton:  { name: "Wharton (UPenn)", tagline: "The global leader in business education.", lightBg: "#E6F1FB", lightText: "#185FA5", desc: "You're analytically sharp, finance-oriented, and want the most rigorous business education in the world. Wharton's quantitative strength and finance pedigree are unmatched, and its sheer scale gives you a massive alumni network spanning every industry.", traits: ["Finance", "Quantitative rigor", "Global network", "PE/IB", "Scale"] },
+  Booth:    { name: "Chicago Booth", tagline: "Rigorous. Analytical. Intellectually free.", lightBg: "#FAEEDA", lightText: "#854F0B", desc: "You love intellectual debate, economic thinking, and the freedom to design your own curriculum. Booth attracts independent thinkers who want to be challenged by ideas and graduates who are respected for intellectual firepower across finance, consulting, and tech.", traits: ["Academic rigor", "Flexible curriculum", "Economic thinking", "Finance/consulting", "Independent"] },
+  Kellogg:  { name: "Kellogg (Northwestern)", tagline: "The collaborative, people-first MBA.", lightBg: "#EEEDFE", lightText: "#534AB7", desc: "You believe that great leadership is fundamentally about people. Kellogg's culture is famously warm and collaborative, attracting future marketing, consulting, and general management leaders who want to build lasting relationships alongside their degree.", traits: ["Team-oriented", "Marketing", "Collaborative culture", "Consulting", "People-first"] },
+  Sloan:    { name: "MIT Sloan", tagline: "Management in the age of innovation.", lightBg: "#E1F5EE", lightText: "#0F6E56", desc: "You want to be at the intersection of business and technology. Sloan attracts systems-thinkers who want to leverage innovation, engineering, and data to transform industries. Access to MIT's broader ecosystem is a unique and powerful differentiator.", traits: ["Technology", "Innovation", "Systems thinking", "MIT ecosystem", "Deep tech"] },
+  Columbia: { name: "Columbia Business School", tagline: "At the center of business. In the center of New York.", lightBg: "#E6F1FB", lightText: "#0C447C", desc: "You want to be in the middle of it all — finance, media, tech, startups — and New York City is your classroom. Columbia's location gives you unparalleled access to industry and recruiters, and the alumni network runs deep in finance and global business.", traits: ["New York access", "Finance", "Real-world network", "City immersion", "Flexible"] },
+};
+
+let scores = { HBS: 0, Stanford: 0, Wharton: 0, Booth: 0, Kellogg: 0, Sloan: 0, Columbia: 0 };
+let answers = new Array(questions.length).fill(null);
+let current = 0;
+let stage = 'quiz';
+
+function render() {
+  const body = document.getElementById('quiz-body');
+  if (stage === 'quiz') renderQuestion(body);
+  else if (stage === 'gate') renderGate(body);
+  else renderResult(body);
+}
+
+function renderQuestion(body) {
+  const q = questions[current];
+  const pct = (current / questions.length) * 100;
+  const letters = ['A','B','C','D'];
+  body.innerHTML = `
+    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+    <div class="q-label">Question ${current + 1} of ${questions.length}</div>
+    <div class="q-text">${q.q}</div>
+    <div class="options">
+      ${q.opts.map((o, i) => `
+        <div class="opt ${answers[current] === i ? 'selected' : ''}" onclick="selectOpt(${i})">
+          <span class="opt-letter">${letters[i]}</span>
+          <span class="opt-text">${o.t}</span>
+        </div>
+      `).join('')}
+    </div>
+    <div class="nav">
+      <button onclick="go(-1)" ${current === 0 ? 'disabled' : ''}>Back</button>
+      <span class="skip-note">${answers[current] === null ? 'Select an answer to continue' : ''}</span>
+      <button class="primary" onclick="go(1)" ${answers[current] === null ? 'disabled' : ''}>${current === questions.length - 1 ? 'See results →' : 'Next'}</button>
+    </div>
+  `;
+}
+
+function renderGate(body) {
+  body.innerHTML = `
+    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
+    <div class="gate-wrap">
+      <div class="gate-icon">🎓</div>
+      <div class="gate-title">Your results are ready</div>
+      <div class="gate-sub">Enter your details below to see which M7 program is your best fit — and get tailored insights sent to your inbox.</div>
+      <div class="gate-field">
+        <input type="text" id="gate-name" placeholder="Your name" />
+        <input type="email" id="gate-email" placeholder="Your email address" />
+        <span class="error-msg" id="email-error">Please enter a valid email address.</span>
+      </div>
+      <button class="primary gate-btn" onclick="submitGate()">See my results →</button>
+      <div class="gate-privacy">No spam. Your information is used only to send your results and relevant MBA resources.</div>
+    </div>
+    <div class="gate-skip" onclick="skipGate()">Skip — show results without entering email</div>
+  `;
+}
+
+function submitGate() {
+  const name = document.getElementById('gate-name').value.trim();
+  const email = document.getElementById('gate-email').value.trim();
+  const emailInput = document.getElementById('gate-email');
+  const errorMsg = document.getElementById('email-error');
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!emailValid) {
+    emailInput.classList.add('error');
+    errorMsg.classList.add('visible');
+    return;
+  }
+  emailInput.classList.remove('error');
+  errorMsg.classList.remove('visible');
+  fetch('https://formspree.io/f/xgodkabw', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ name: name, email: email })
+  }).finally(() => {
+    stage = 'result';
+    render();
+  });
+}
+
+function skipGate() {
+  stage = 'result';
+  render();
+}
+
+function selectOpt(i) {
+  const prev = answers[current];
+  if (prev !== null) {
+    const prevSchools = questions[current].opts[prev].schools;
+    for (const [s, v] of Object.entries(prevSchools)) scores[s] -= v;
+  }
+  answers[current] = i;
+  const schools = questions[current].opts[i].schools;
+  for (const [s, v] of Object.entries(schools)) scores[s] = (scores[s] || 0) + v;
+  render();
+}
+
+function go(dir) {
+  if (dir === 1 && current === questions.length - 1) {
+    stage = 'gate';
+    render();
+    return;
+  }
+  current += dir;
+  render();
+}
+
+function renderResult(body) {
+  const sorted = Object.entries(scores).sort((a,b) => b[1]-a[1]);
+  const top = sorted[0][0];
+  const info = schoolInfo[top];
+  const maxScore = sorted[0][1];
+  const runnersHtml = sorted.slice(1).map(([s, v]) => {
+    const pct = Math.round((v / maxScore) * 100);
+    return `<div class="runner-row">
+      <span class="runner-name">${schoolInfo[s].name}</span>
+      <div class="runner-bar-wrap"><div class="runner-bar" style="width:${pct}%"></div></div>
+      <span class="runner-pct">${pct}%</span>
+    </div>`;
+  }).join('');
+  body.innerHTML = `
+    <div class="result-card">
+      <div class="school-badge" style="background:${info.lightBg};color:${info.lightText}">Your best fit</div>
+      <div class="school-name">${info.name}</div>
+      <div class="school-tagline">${info.tagline}</div>
+      <div class="school-desc">${info.desc}</div>
+      <div class="traits-label">What makes you a fit</div>
+      <div class="trait-tags">${info.traits.map(t => `<span class="trait-tag">${t}</span>`).join('')}</div>
+    </div>
+    <div class="runners-up">
+      <div class="q-label" style="margin-bottom:0.75rem">Other strong matches</div>
+      ${runnersHtml}
+    </div>
+    <div class="nav" style="margin-top:1.5rem">
+      <button onclick="restart()">Retake quiz</button>
+    </div>
+  `;
+}
+
+function restart() {
+  scores = { HBS: 0, Stanford: 0, Wharton: 0, Booth: 0, Kellogg: 0, Sloan: 0, Columbia: 0 };
+  answers = new Array(questions.length).fill(null);
+  current = 0;
+  stage = 'quiz';
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
